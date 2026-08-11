@@ -58,6 +58,13 @@ def casdastro_paciente():
         }
         lista_dados.append(dados)
 
+#exemplo de melhor uso
+# for poderia ser feito com O(n)
+def listar():
+    for paciente in lista_dados:
+        for key, value in paciente.items():
+            print(f"{key} = {value}")
+
 
 lista_dados = []
 
@@ -72,8 +79,8 @@ while True:
             casdastro_paciente()
     elif opcao == '2':
         print("\n>> Lista de paciente")
-        print(lista_dados)
-
+        #print(lista_dados)
+        listar()
 
     elif opcao == '0':
             print("\n>> Encerrando o programa. Até logo!")
@@ -81,3 +88,5 @@ while True:
     else:
             # Captura qualquer coisa que não seja 0, 1, 2 ou 3
             print("\n>> Opção inválida! Por favor, digite um número válido do menu.")
+
+
