@@ -88,11 +88,11 @@ def alterar_cliente(list_cliente, indice):
     print(f'Nome cliente: {list_cliente[indice]["nome_cliente"]}')
     novo_nome = input("Digite o novo nome do cliente: ")
     print(f'Numero cliente: {list_cliente[indice]["numero_agencia"]}')
-    novo_numero_agencia = input("Digite o numero da agencia do cliente: ")
+    novo_numero_agencia = int(input("Digite o numero da agencia do cliente: "))
     print(f'Numero conta cliente: {list_cliente[indice]["numero_conta"]}')
-    novo_numero_conta = input("Digite o numero da conta do cliente: ")
+    novo_numero_conta = int(input("Digite o numero da conta do cliente: "))
     print(f'Saldo cliente: {list_cliente[indice]["saldo_cliente"]}')
-    novo_saldo = input("Digite o saldo do cliente: ")
+    novo_saldo = float(input("Digite o saldo do cliente: "))
 
     list_cliente[indice]['nome_cliente'] = novo_nome
     list_cliente[indice]['numero_agencia'] = novo_numero_agencia
