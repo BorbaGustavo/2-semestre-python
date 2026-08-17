@@ -30,6 +30,14 @@ def main():
                     indice = buscar_cliente(list_cliente, codigo_excluir)
                     if indice != -1:
                         excluir_cliente(list_cliente, indice)
+                case 3:
+                    codigo_remover = int(input("Digite o codigo do cliente: "))
+                    indice = buscar_cliente(list_cliente, codigo_remover)
+                    if indice != -1:
+                        excluir_cliente(list_cliente, indice)
+                    else:
+                        print("Nenhum cliente foi encontrado.")
+
                 case 4:
                     codigo_exibir = int(input("Digite o codigo do cliente: "))
                     indice = buscar_cliente(list_cliente, codigo_exibir)
