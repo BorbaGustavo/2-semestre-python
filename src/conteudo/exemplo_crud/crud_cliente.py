@@ -38,7 +38,7 @@ def main():
                     else:
                         print("Nenhum cliente foi encontrado.")
                 case 5:
-                    exibir_cliente_10k(list_cliente,indice)
+                    exibir_cliente_10k(list_cliente)
                 case 6:
                     break
         else:
@@ -74,14 +74,15 @@ def buscar_cliente(list_cliente, codigo):
     return indice
 
 def exibir_cliente(list_cliente, indice):
-    for chave, valor in list_cliente.items():
-        print(f"{chave} : {valor['saldo_cliente']}")
+   client = list_cliente[indice]
+   for chave, valor in client.items():
+       print(f"{chave} :  {valor}")
 
-def exibir_cliente_10k(list_cliente, indice):
-    for i in (len(list_cliente)):
-        if (list_cliente[i]['saldo_cliente'] > 10000):
-            for chave, valor in list_cliente.items():
-                print(f"{chave} : {valor['saldo_cliente']}")
+def exibir_cliente_10k(list_cliente):
+   # fazendo um foreach melhor
+   for cliente in list_cliente:
+       if cliente["saldo_cliente"] > 10000:
+           print(cliente)
 # u = Update
 def alterar_cliente(list_cliente, indice):
     print(f'Nome cliente: {list_cliente[indice]["nome_cliente"]}')
