@@ -67,11 +67,10 @@ def inserir_cliente(list_cliente):
 
 # R = READ
 def buscar_cliente(list_cliente, codigo):
-    indice = -1
     for i in range(len(list_cliente)):
         if codigo == list_cliente[i]["cod_cliente"]:
-            indice = i
-    return indice
+            return i
+    return -1
 
 def exibir_cliente(list_cliente, indice):
    client = list_cliente[indice]
