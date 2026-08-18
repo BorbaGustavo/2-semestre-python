@@ -1,5 +1,43 @@
 # fazendo Crud da academia
 
+def main():
+    list_cliente = []
+    opcao = 0
+
+    while (opcao != 5):
+        print('''
+        1. Realziar matricula
+        2. Alterar dados da matricula
+        3. Exibir Dados do cliente
+        4. Excluir cliente
+        5. Sair do programa
+        ''')
+
+        opcao = int(input("Digite uma opção: (1 a 5)"))
+        if (opcao >= 1 and opcao <= 5):
+            match opcao:
+                case 1:
+                    inserir_cliente(list_cliente)
+                case 2:
+                    matricula = int(input("Digite um nuemro matricula:"))
+                    indice = buscar_cliente(list_cliente, matricula)
+                    alterar_cliente(list_cliente,indice)
+                case 3:
+                    matricula = int(input("Digite um nuemro matricula:"))
+                    indice = buscar_cliente(list_cliente, matricula)
+                    exibir_cliente(list_cliente,indice)
+                case 4:
+                    matricula = int(input("Digite um nuemro matricula:"))
+                    indice = buscar_cliente(
+                    list_cliente, matricula)
+                    deletar_cliente(list_cliente, indice)
+                case 5:
+                    print("Encerrando ....")
+                    break
+
+
+
+
 #C = Create
 def inserir_cliente(lista_cliente):
     matricula = int(input("Digite o matricula do cliente: "))
@@ -47,4 +85,9 @@ def alterar_cliente(lista_cliente, indice):
     lista_cliente[indice]['modalidade'] = novo_modalidade
     lista_cliente[indice]['presenca_mes'] = novo_presenca
 
+def deletar_cliente(lista_cliente, indice):
+    lista_cliente.pop(indice)
+    print("Dados do cliente excluidos")
 
+if __name__ == '__main__':
+    main()
