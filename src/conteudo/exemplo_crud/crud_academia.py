@@ -1,7 +1,43 @@
 # fazendo Crud da academia
 
 def main():
-    list_cliente = []
+    list_cliente = [
+        {
+            "matricula": 101,
+            "nome_cliente": "Ana Silva",
+            "plano_cliente": "Anual",
+            "modalidade": "Musculação",
+            "presenca_mes": 18
+        },
+        {
+            "matricula": 102,
+            "nome_cliente": "Carlos Eduardo",
+            "plano_cliente": "Mensal",
+            "modalidade": "CrossFit",
+            "presenca_mes": 12
+        },
+        {
+            "matricula": 103,
+            "nome_cliente": "Mariana Costa",
+            "plano_cliente": "Trimestral",
+            "modalidade": "Natação",
+            "presenca_mes": 8
+        },
+        {
+            "matricula": 104,
+            "nome_cliente": "Roberto Alves",
+            "plano_cliente": "Anual",
+            "modalidade": "Pilates",
+            "presenca_mes": 22
+        },
+        {
+            "matricula": 105,
+            "nome_cliente": "Fernanda Lima",
+            "plano_cliente": "Mensal",
+            "modalidade": "Musculação",
+            "presenca_mes": 5
+        }
+    ]
     opcao = 0
 
     while (opcao != 5):
@@ -37,6 +73,24 @@ def main():
 
 
 
+#R = READ
+def buscar_cliente(lista_cliente, matricula):
+    try:
+        for i, cliente in enumerate(lista_cliente):
+            if cliente["matricula"] == matricula:
+                return i
+
+    except IndexError:
+        print("ERROR: Nehuma matricula foi encontrada com esse numero")
+        return -1
+
+
+def exibir_cliente (lista_cliente, indice):
+    client = lista_cliente[indice]
+    for chave, valor in client.items():
+        print(f"{chave} :  {valor}")
+
+
 
 #C = Create
 def inserir_cliente(lista_cliente):
@@ -56,18 +110,7 @@ def inserir_cliente(lista_cliente):
     lista_cliente.append(dados_cliente)
 
 
-#R = READ
-def buscar_cliente(
-        lista_cliente, matricula):
-    for i in range(len(lista_cliente)):
-        if matricula == lista_cliente[i]["matricula"]:
-            return i
-    return -1
 
-def exibir_cliente (lista_cliente, indice):
-    client = lista_cliente[indice]
-    for chave, valor in client.items():
-        print(f"{chave} :  {valor}")
 
 # U = update
 def alterar_cliente(lista_cliente, indice):
