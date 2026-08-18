@@ -55,30 +55,17 @@ def main():
 
 
 #funções do CRUD
-# C = CREATE
-def inserir_cliente(list_cliente):
-    cod_cliente = int(input("Digite o codigo do cliente: "))
-    nome_cliente = input("Digite o nome do cliente: ")
-    numero_agencia = int(input("Digite numero da agencia do cliente:"))
-    numero_conta = int(input("Digite o numero da conta do cliente:"))
-    saldo_cliente = float(input("Digite o saldo do cliente: "))
-
-    dados_cliente = {
-        "cod_cliente": cod_cliente,
-        "nome_cliente": nome_cliente,
-        "numero_agencia": numero_agencia,
-        "numero_conta": numero_conta,
-        "saldo_cliente": saldo_cliente,
-    }
-
-    list_cliente.append(dados_cliente)
 
 # R = READ
 def buscar_cliente(list_cliente, codigo):
-    for i in range(len(list_cliente)):
-        if codigo == list_cliente[i]["cod_cliente"]:
-            return i
-    return -1
+    try:
+        for i in range(len(list_cliente)):
+            if codigo == list_cliente[i]["cod_cliente"]:
+                return i
+        return -1
+    except IndexError:
+        print("Nenhum cliente foi encontrado.")
+
 
 def exibir_cliente(list_cliente, indice):
    client = list_cliente[indice]
@@ -90,6 +77,35 @@ def exibir_cliente_10k(list_cliente):
    for cliente in list_cliente:
        if cliente["saldo_cliente"] > 10000:
            print(cliente)
+
+# C = CREATE
+def inserir_cliente(list_cliente):
+    try:
+        cod_cliente = int(input("Digite o codigo do cliente: "))
+        #validando para não inserir mesmo codigo existente
+        indice = buscar_cliente(list_cliente, cod_cliente)
+        while (indice != -1):
+            cod_cliente = int(input("Esse codigo já existe coloque codigo não existente: "))
+            indice = buscar_cliente(list_cliente, cod_cliente)
+
+        nome_cliente = input("Digite o nome do cliente: ")
+        numero_agencia = int(input("Digite numero da agencia do cliente:"))
+        numero_conta = int(input("Digite o numero da conta do cliente:"))
+        saldo_cliente = float(input("Digite o saldo do cliente: "))
+    except ValueError:
+        print("Digite dados numericos para codigo, nr agencia e conta do cliente")
+    else:
+        dados_cliente = {
+            "cod_cliente": cod_cliente,
+            "nome_cliente": nome_cliente,
+            "numero_agencia": numero_agencia,
+            "numero_conta": numero_conta,
+            "saldo_cliente": saldo_cliente,
+        }
+
+    list_cliente.append(dados_cliente)
+
+
 # u = Update
 def alterar_cliente(list_cliente, indice):
     print(f'Nome cliente: {list_cliente[indice]["nome_cliente"]}')
@@ -107,7 +123,7 @@ def alterar_cliente(list_cliente, indice):
     list_cliente[indice]['saldo_cliente'] = novo_saldo
 
 
-# R = REMOVE
+# D = REMOVE
 def excluir_cliente(list_cliente, indice):
     list_cliente.pop(indice)
     print("Dados do cliente excluidos")

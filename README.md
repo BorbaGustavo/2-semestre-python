@@ -3,3 +3,4 @@
 --- 
 - aula 03/08/26 - Revisão de listas
 - aula 10/08/26 - Revisão de Funções
+- aula 17/08 - Tratamento de Erros (Try/Except)
