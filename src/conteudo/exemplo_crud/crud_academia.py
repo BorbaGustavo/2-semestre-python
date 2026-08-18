@@ -77,28 +77,38 @@ def main():
 def buscar_cliente(lista_cliente, matricula):
     try:
         for i, cliente in enumerate(lista_cliente):
-            if cliente["matricula"] == matricula:
+            if cliente.get("matricula") == matricula:
                 return i
+        return -1
 
     except IndexError:
         print("ERROR: Nehuma matricula foi encontrada com esse numero")
-        return -1
+
 
 
 def exibir_cliente (lista_cliente, indice):
-    client = lista_cliente[indice]
-    for chave, valor in client.items():
-        print(f"{chave} :  {valor}")
-
+    try:
+        if indice < 0 or indice > len(lista_cliente):
+            print("Erro: Cliente não encontrado para este índice.")
+            return
+        client = lista_cliente[indice]
+        for chave, valor in client.items():
+            print(f"{chave} :  {valor}")
+    except IndexError:
+        print("Nenhum cliente foi encontrado com esse numero matricula")
 
 
 #C = Create
 def inserir_cliente(lista_cliente):
-    matricula = int(input("Digite o matricula do cliente: "))
-    nome_cliente = input("Digite o nome do cliente: ")
-    plano_cliente = input("Digite o plano do cliente: ")
-    modalidade = input("Digite o modalidade do cliente: ")
-    presenca_mes = int(input("Quanta vezes ele foi nesse Mês:"))
+    try:
+
+        matricula = verifica_matricula(lista_cliente)
+        nome_cliente = input("Digite o nome do cliente: ")
+        plano_cliente = input("Digite o plano do cliente: ")
+        modalidade = input("Digite o modalidade do cliente: ")
+        presenca_mes = int(input("Quanta vezes ele foi nesse Mês:"))
+    except ValueError:
+        print("Digite dados numericos para matricula, prenseça no mês")
 
     dados_cliente = {
         "matricula": matricula,
@@ -131,6 +141,15 @@ def alterar_cliente(lista_cliente, indice):
 def deletar_cliente(lista_cliente, indice):
     lista_cliente.pop(indice)
     print("Dados do cliente excluidos")
+
+## Auxiliares para validação
+def verifica_matricula(lista_cliente):
+    while True:
+        matricula = int(input("Digite o matricula do cliente: "))
+        if buscar_cliente(lista_cliente, matricula)!= -1:
+            print("Ess matricula já existe! Por favor coloque um novo numero de matricula!")
+        else:
+            return matricula
 
 if __name__ == '__main__':
     main()
