@@ -124,19 +124,39 @@ def inserir_cliente(lista_cliente):
 
 # U = update
 def alterar_cliente(lista_cliente, indice):
-    print(f'Nome do cliente: {lista_cliente[indice]["nome_cliente"]}')
-    novo_nome = input("Digite o nome do cliente: ")
-    print(f'Plano do Cliente: {lista_cliente[indice]["plano_cliente"]}')
-    novo_plano = input("Digite o plano do cliente: ")
-    print(f'Modalidade: {lista_cliente[indice]["modalidade"]}')
-    novo_modalidade = input("Digite o modalidade do cliente: ")
-    print(f'Presenca: {lista_cliente[indice]["presanca_mes"]}')
-    novo_presenca = input("Digite o presenca do cliente: ")
+    # Trava inicial: se o índice for -1 ou fora do tamanho da lista, nem tenta alterar
+    if indice < 0 or indice >= len(lista_cliente):
+        print("Erro: Cliente não encontrado ou índice inválido!")
+        return
 
-    lista_cliente[indice]['nome_cliente'] = novo_nome
-    lista_cliente[indice]['plano_cliente'] = novo_plano
-    lista_cliente[indice]['modalidade'] = novo_modalidade
-    lista_cliente[indice]['presenca_mes'] = novo_presenca
+    try:
+        # Exibe os dados atuais
+        print(f'Nome atual: {lista_cliente[indice]["nome_cliente"]}')
+        novo_nome = input("Digite o novo nome do cliente: ")
+
+        print(f'Plano atual: {lista_cliente[indice]["plano_cliente"]}')
+        novo_plano = input("Digite o novo plano do cliente: ")
+
+        print(f'Modalidade atual: {lista_cliente[indice]["modalidade"]}')
+        novo_modalidade = input("Digite a nova modalidade do cliente: ")
+
+        print(f'Presença atual: {lista_cliente[indice]["presenca_mes"]}')
+        novo_presenca = int(input("Digite a nova presença do cliente: ")) # int() para manter tipo numérico
+
+        # Grava as alterações
+        lista_cliente[indice]['nome_cliente'] = novo_nome
+        lista_cliente[indice]['plano_cliente'] = novo_plano
+        lista_cliente[indice]['modalidade'] = novo_modalidade
+        lista_cliente[indice]['presenca_mes'] = novo_presenca
+
+        print("Dados alterados com sucesso!")
+
+    except ValueError:
+        print("Erro: A presença deve ser um número inteiro! Nenhuma alteração foi salva.")
+    except KeyError:
+        print("Erro: Uma das chaves no dicionário do cliente está incorreta.")
+    except IndexError:
+        print("Erro: Posição do cliente não existe na lista.")
 
 def deletar_cliente(lista_cliente, indice):
     lista_cliente.pop(indice)
